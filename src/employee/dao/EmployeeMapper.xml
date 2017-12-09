@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee.dao.EmployeeDAO">
+    <resultMap id="employee" type="employee.entity.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="姓名"/>
+        <result property="age" column="年龄"/>
+        <result property="job" column="工作"/>
+        <result property="salary" column="工资"/>
+    </resultMap>
+    <select id="list" resultMap="employee">
+        SELECT * FROM employee_list
+    </select>
+    <insert id="save" parameterType="employee.entity.Employee">
+        INSERT INTO employee_list VALUES (#{id},#{name},#{age},#{job},#{salary})
+    </insert>
+    <update id="modify" parameterType="employee.entity.Employee">
+        UPDATE employee_list SET 姓名=#{name},年龄=#{age},工作=#{job},工资=#{salary} WHERE id=#{id}
+    </update>
+    <delete id="delete" parameterType="String">
+        DELETE FROM employee_list WHERE id=#{id}
+    </delete>
+</mapper>
